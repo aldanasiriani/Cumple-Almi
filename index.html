@@ -121,33 +121,7 @@
     text-align: center;
   }
 
-  /* OREJITAS SUPERIORES */
-  .minnie-badge {
-    position: relative;
-    width: 100px;
-    height: 90px;
-    margin: 5px auto 12px;
-  }
-  .m-head {
-    width: 64px;
-    height: 64px;
-    background: var(--black);
-    border-radius: 50%;
-    position: absolute;
-    bottom: 0;
-    left: 18px;
-  }
-  .m-ear {
-    width: 40px;
-    height: 40px;
-    background: var(--black);
-    border-radius: 50%;
-    position: absolute;
-    top: 0;
-  }
-  .m-ear.left { left: 0; }
-  .m-ear.right { right: 0; }
-  
+  /* MOÑO VECTORIAL GENERAL */
   .vector-bow {
     position: absolute;
     top: 4px;
@@ -179,6 +153,33 @@
     transform: translateX(-50%);
     z-index: 5;
   }
+
+  /* OREJITAS SUPERIORES */
+  .minnie-badge {
+    position: relative;
+    width: 100px;
+    height: 90px;
+    margin: 5px auto 12px;
+  }
+  .m-head {
+    width: 64px;
+    height: 64px;
+    background: var(--black);
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    left: 18px;
+  }
+  .m-ear {
+    width: 40px;
+    height: 40px;
+    background: var(--black);
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+  }
+  .m-ear.left { left: 0; }
+  .m-ear.right { right: 0; }
 
   .intro-text {
     font-family: 'Dancing Script', cursive;
@@ -241,7 +242,7 @@
     color: #444;
   }
 
-  /* MARCO FOTO ALMA */
+  /* MARCO FOTO PRINCIPAL */
   .photo-frame-wrapper {
     position: relative;
     width: 250px;
@@ -258,7 +259,6 @@
   }
   .m-frame-ear.left { left: -5px; }
   .m-frame-ear.right { right: -5px; }
-
   .photo-frame-wrapper .vector-bow {
     top: -18px;
     width: 72px;
@@ -277,7 +277,6 @@
     border: 2px solid #fff;
     top: 8px;
   }
-
   .m-frame-head {
     width: 215px;
     height: 215px;
@@ -296,6 +295,93 @@
     object-fit: cover;
     object-position: center 30%;
     display: block;
+  }
+
+  /* CARRUSEL DE RECUERDOS DE ALMA */
+  .carousel-section {
+    margin: 30px 0;
+    background: #fff;
+    border-radius: 22px;
+    padding: 20px 14px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+    border: 1px solid #f0f0f0;
+  }
+  .carousel-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 32px;
+    color: var(--dark-red);
+    margin-bottom: 12px;
+  }
+  .carousel-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+  }
+  .carousel-track {
+    display: flex;
+    transition: transform 0.4s ease-in-out;
+  }
+  .carousel-slide {
+    min-width: 100%;
+    box-sizing: border-box;
+    padding: 6px;
+  }
+  .slide-card {
+    background: #fafafa;
+    border: 2px solid #eee;
+    border-radius: 14px;
+    padding: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  }
+  .slide-card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+  }
+  .slide-caption {
+    font-size: 12px;
+    color: #666;
+    margin-top: 8px;
+    font-weight: 600;
+  }
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(229, 26, 46, 0.85);
+    color: #fff;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .carousel-btn.prev { left: 8px; }
+  .carousel-btn.next { right: 8px; }
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 12px;
+  }
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    background: #ddd;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .carousel-dot.active {
+    background: var(--red);
+    width: 18px;
+    border-radius: 10px;
   }
 
   /* CONTADOR */
@@ -336,7 +422,7 @@
     margin-top: 2px;
   }
 
-  /* TARJETAS */
+  /* TARJETAS DE INFORMACIÓN */
   .info-card {
     background: #fff;
     border-radius: 22px;
@@ -369,6 +455,7 @@
     margin-bottom: 14px;
   }
 
+  /* BOTONES */
   .btn-pill {
     display: block;
     width: 100%;
@@ -399,7 +486,7 @@
     font-family: 'Dancing Script', cursive;
     font-size: 34px;
     color: var(--red);
-    margin-top: 15px;
+    margin-top: 20px;
   }
   .footer-sub {
     font-size: 10px;
@@ -430,6 +517,7 @@
 
 <!-- ELEMENTO DE AUDIO LOCAL -->
 <audio id="local-audio" loop preload="auto">
+  <source src="Cancion.mp3" type="audio/mpeg">
   <source src="cancion.mp3" type="audio/mpeg">
   <source src="en-mi-corazon-viviras.mp3" type="audio/mpeg">
 </audio>
@@ -438,6 +526,7 @@
   <div class="pattern-bg"></div>
 
   <div class="content-body">
+    <!-- OREJITAS MINNIE CABECERA -->
     <div class="minnie-badge">
       <div class="m-ear left"></div>
       <div class="m-ear right"></div>
@@ -454,6 +543,7 @@
     <div class="girl-name">Alma</div>
     <div class="age-badge">Mi 1er Añito</div>
 
+    <!-- FECHA Y HORA -->
     <div class="date-card">
       <div class="date-item">
         <span class="label">OCTUBRE</span>
@@ -467,7 +557,7 @@
       </div>
     </div>
 
-    <!-- FOTO DE ALMA -->
+    <!-- FOTO PRINCIPAL EN MARCO DE MINNIE -->
     <div class="photo-frame-wrapper">
       <div class="m-frame-ear left"></div>
       <div class="m-frame-ear right"></div>
@@ -481,7 +571,7 @@
       </div>
     </div>
 
-    <!-- CONTADOR -->
+    <!-- CONTADOR REGRESIVO -->
     <div class="counter-box">
       <h3>Faltan muy poquitos días...</h3>
       <div class="timer-grid">
@@ -492,7 +582,42 @@
       </div>
     </div>
 
-    <!-- UBICACIÓN -->
+    <!-- CARRUSEL DE FOTOS DE ALMI -->
+    <div class="carousel-section">
+      <div class="carousel-title">Mis Primeras Sonrisas 🎀</div>
+      <div class="carousel-container">
+        <button class="carousel-btn prev" onclick="moveSlide(-1)">❮</button>
+        <button class="carousel-btn next" onclick="moveSlide(1)">❯</button>
+        
+        <div class="carousel-track" id="carouselTrack">
+          <div class="carousel-slide">
+            <div class="slide-card">
+              <img src="alma.jpg" alt="Alma">
+              <div class="slide-caption">¡Descubriendo el mundo con alegría! ✨</div>
+            </div>
+          </div>
+          <div class="carousel-slide">
+            <div class="slide-card">
+              <img src="alma.jpg" alt="Alma">
+              <div class="slide-caption">Un añito de amor incondicional ❤️</div>
+            </div>
+          </div>
+          <div class="carousel-slide">
+            <div class="slide-card">
+              <img src="alma.jpg" alt="Alma">
+              <div class="slide-caption">¡Lista para festejar a lo grande! 🎂</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-dots">
+        <div class="carousel-dot active" onclick="goToSlide(0)"></div>
+        <div class="carousel-dot" onclick="goToSlide(1)"></div>
+        <div class="carousel-dot" onclick="goToSlide(2)"></div>
+      </div>
+    </div>
+
+    <!-- DÓNDE FESTEJO -->
     <div class="info-card">
       <div class="card-icon">🎀📍</div>
       <h4>¿Dónde festejo?</h4>
@@ -503,7 +628,25 @@
       </a>
     </div>
 
-    <!-- CONFIRMACIÓN -->
+    <!-- DRESS CODE / TEMÁTICA -->
+    <div class="info-card">
+      <div class="card-icon">👗👔</div>
+      <h4>Código de Vestimenta</h4>
+      <p style="font-size: 13px; color: #555; line-height: 1.5; margin-bottom: 6px;">
+        Elegante Sport · Si querés, ¡sumale un toque de <b>rojo, negro o blanco</b> a tu look de Minnie!
+      </p>
+    </div>
+
+    <!-- REGALO / LLUVIA DE SOBRES -->
+    <div class="info-card">
+      <div class="card-icon">🎁</div>
+      <h4>Mesa de Regalos</h4>
+      <p style="font-size: 13px; color: #555; line-height: 1.5;">
+        Tu presencia y tu cariño son mi mejor regalo. Si deseás hacerme un presente, contaremos con alcancía para lluvia de sobres en el salón.
+      </p>
+    </div>
+
+    <!-- CONFIRMAR ASISTENCIA -->
     <div class="info-card">
       <div class="card-icon">💌</div>
       <h4>Confirmar Asistencia</h4>
@@ -521,6 +664,7 @@
 </div>
 
 <script>
+  // AUDIO
   const audio = document.getElementById('local-audio');
   const musicBtn = document.getElementById('music-btn');
 
@@ -529,7 +673,6 @@
     audio.play().then(() => {
       musicBtn.innerText = "🔊";
     }).catch(err => {
-      console.log("Audio no pudo iniciar automáticamente:", err);
       musicBtn.innerText = "🔇";
     });
   }
@@ -545,6 +688,7 @@
     }
   }
 
+  // CONTADOR REGRESIVO (16 de Octubre)
   function updateCountdown() {
     const now = new Date();
     let targetYear = now.getFullYear();
@@ -567,6 +711,29 @@
   }
   setInterval(updateCountdown, 1000);
   updateCountdown();
+
+  // CARRUSEL
+  let currentSlide = 0;
+  const totalSlides = 3;
+  const track = document.getElementById('carouselTrack');
+  const dots = document.querySelectorAll('.carousel-dot');
+
+  function updateCarousel() {
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentSlide);
+    });
+  }
+
+  function moveSlide(direction) {
+    currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+    updateCarousel();
+  }
+
+  function goToSlide(index) {
+    currentSlide = index;
+    updateCarousel();
+  }
 </script>
 
 </body>
