@@ -297,93 +297,6 @@
     display: block;
   }
 
-  /* CARRUSEL DE RECUERDOS DE ALMA */
-  .carousel-section {
-    margin: 30px 0;
-    background: #fff;
-    border-radius: 22px;
-    padding: 20px 14px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-    border: 1px solid #f0f0f0;
-  }
-  .carousel-title {
-    font-family: 'Dancing Script', cursive;
-    font-size: 32px;
-    color: var(--dark-red);
-    margin-bottom: 12px;
-  }
-  .carousel-container {
-    position: relative;
-    overflow: hidden;
-    border-radius: 16px;
-  }
-  .carousel-track {
-    display: flex;
-    transition: transform 0.4s ease-in-out;
-  }
-  .carousel-slide {
-    min-width: 100%;
-    box-sizing: border-box;
-    padding: 6px;
-  }
-  .slide-card {
-    background: #fafafa;
-    border: 2px solid #eee;
-    border-radius: 14px;
-    padding: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
-  }
-  .slide-card img {
-    width: 100%;
-    height: 260px;
-    object-fit: cover;
-    border-radius: 10px;
-    display: block;
-  }
-  .slide-caption {
-    font-size: 12px;
-    color: #666;
-    margin-top: 8px;
-    font-weight: 600;
-  }
-  .carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(229, 26, 46, 0.85);
-    color: #fff;
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    font-size: 18px;
-    cursor: pointer;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .carousel-btn.prev { left: 8px; }
-  .carousel-btn.next { right: 8px; }
-  .carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-    margin-top: 12px;
-  }
-  .carousel-dot {
-    width: 8px;
-    height: 8px;
-    background: #ddd;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-  .carousel-dot.active {
-    background: var(--red);
-    width: 18px;
-    border-radius: 10px;
-  }
-
   /* CONTADOR */
   .counter-box {
     background: var(--soft-red);
@@ -422,7 +335,110 @@
     margin-top: 2px;
   }
 
-  /* TARJETAS DE INFORMACIÓN */
+  /* CARRUSEL DE 9 FOTOS */
+  .carousel-section {
+    margin: 30px 0;
+    background: #fff;
+    border-radius: 22px;
+    padding: 20px 14px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+    border: 1px solid #f0f0f0;
+  }
+  .carousel-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 32px;
+    color: var(--dark-red);
+    margin-bottom: 12px;
+  }
+  .carousel-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    touch-action: pan-y;
+  }
+  .carousel-track {
+    display: flex;
+    transition: transform 0.4s ease-in-out;
+  }
+  .carousel-slide {
+    min-width: 100%;
+    box-sizing: border-box;
+    padding: 6px;
+  }
+  .slide-card {
+    background: #fafafa;
+    border: 2px solid #eee;
+    border-radius: 14px;
+    padding: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  }
+  .slide-card img {
+    width: 100%;
+    height: 290px;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+  }
+  .slide-badge {
+    display: inline-block;
+    background: #ffe3e6;
+    color: var(--dark-red);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-top: 8px;
+  }
+  .slide-caption {
+    font-size: 13px;
+    color: #555;
+    margin-top: 5px;
+    font-weight: 600;
+  }
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(229, 26, 46, 0.85);
+    color: #fff;
+    border: none;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  }
+  .carousel-btn.prev { left: 8px; }
+  .carousel-btn.next { right: 8px; }
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 14px;
+  }
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .carousel-dot.active {
+    background: var(--red);
+    width: 20px;
+    border-radius: 10px;
+  }
+
+  /* TARJETA UBICACIÓN */
   .info-card {
     background: #fff;
     border-radius: 22px;
@@ -443,13 +459,13 @@
     color: var(--dark-red);
     margin-bottom: 6px;
   }
-  .info-card .place-name {
+  .place-name {
     font-size: 17px;
     font-weight: 700;
     color: var(--black);
     margin-bottom: 4px;
   }
-  .info-card .place-address {
+  .place-address {
     font-size: 13px;
     color: #666;
     margin-bottom: 14px;
@@ -557,7 +573,7 @@
       </div>
     </div>
 
-    <!-- FOTO PRINCIPAL EN MARCO DE MINNIE -->
+    <!-- FOTO PRINCIPAL -->
     <div class="photo-frame-wrapper">
       <div class="m-frame-ear left"></div>
       <div class="m-frame-ear right"></div>
@@ -582,38 +598,100 @@
       </div>
     </div>
 
-    <!-- CARRUSEL DE FOTOS DE ALMI -->
+    <!-- CARRUSEL DE 9 FOTOS -->
     <div class="carousel-section">
-      <div class="carousel-title">Mis Primeras Sonrisas 🎀</div>
-      <div class="carousel-container">
+      <div class="carousel-title">Mis Momentos Mágicos 🎀</div>
+      <div class="carousel-container" id="carouselContainer">
         <button class="carousel-btn prev" onclick="moveSlide(-1)">❮</button>
         <button class="carousel-btn next" onclick="moveSlide(1)">❯</button>
         
         <div class="carousel-track" id="carouselTrack">
+          <!-- Foto 1 -->
           <div class="carousel-slide">
             <div class="slide-card">
-              <img src="alma2.jpg" alt="Alma">
-              <div class="slide-caption">¡Descubriendo el mundo con alegría! ✨</div>
+              <img src="alma1.jpg" onerror="this.onerror=null;this.src='alma.jpg';" alt="Alma bebé">
+              <span class="slide-badge">Recién nacida</span>
+              <div class="slide-caption">Llegué para iluminar el mundo ✨</div>
             </div>
           </div>
+          <!-- Foto 2 -->
           <div class="carousel-slide">
             <div class="slide-card">
-              <img src="alma3.jpg" alt="Alma">
-              <div class="slide-caption">Un añito de amor incondicional ❤️</div>
+              <img src="alma2.jpg" onerror="this.onerror=null;this.src='alma.jpg';" alt="Alma bebé">
+              <span class="slide-badge">Primeros meses</span>
+              <div class="slide-caption">Mis primeras miradas de ternura 💕</div>
             </div>
           </div>
+          <!-- Foto 3 -->
           <div class="carousel-slide">
             <div class="slide-card">
-              <img src="alma4.jpg" alt="Alma">
-              <div class="slide-caption">¡Lista para festejar a lo grande! 🎂</div>
+              <img src="alma3.jpg" onerror="this.onerror=null;this.src='alma.jpg';" alt="Alma bebé">
+              <span class="slide-badge">Bebita</span>
+              <div class="slide-caption">Pura dulzura y mimos en familia 🥰</div>
+            </div>
+          </div>
+          <!-- Foto 4 -->
+          <div class="carousel-slide">
+            <div class="slide-card">
+              <img src="alma4.jpg" onerror="this.onerror=null;this.src='alma.jpg';" alt="Alma bebé">
+              <span class="slide-badge">Creciendo</span>
+              <div class="slide-caption">Descubriendo mis manitos y risas 👶</div>
+            </div>
+          </div>
+          <!-- Foto 5 -->
+          <div class="carousel-slide">
+            <div class="slide-card">
+              <img src="alma5.jpg" onerror="this.onerror=null;this.src='alma.jpg';" alt="Alma">
+              <span class="slide-badge">6 Meses</span>
+              <div class="slide-caption">Media vuelta al sol de mucho amor ☀️</div>
+            </div>
+          </div>
+          <!-- Foto 6 -->
+          <div class="carousel-slide">
+            <div class="slide-card">
+              <img src="alma6.jpg" onerror="this.onerror=null;this.src='alma.jpg';" alt="Alma">
+              <span class="slide-badge">Jugando</span>
+              <div class="slide-caption">Mis juguetes favoritos y travesuras 🧸</div>
+            </div>
+          </div>
+          <!-- Foto 7 -->
+          <div class="carousel-slide">
+            <div class="slide-card">
+              <img src="alma7.jpg" onerror="this.onerror=null;this.src='alma.jpg';" alt="Alma">
+              <span class="slide-badge">Exploradora</span>
+              <div class="slide-caption">Aprendiendo a sentarme y gatear 🐾</div>
+            </div>
+          </div>
+          <!-- Foto 8 -->
+          <div class="carousel-slide">
+            <div class="slide-card">
+              <img src="alma8.jpg" onerror="this.onerror=null;this.src='alma.jpg';" alt="Alma">
+              <span class="slide-badge">Casi un añito</span>
+              <div class="slide-caption">Cada día más curiosa y simpática 🎀</div>
+            </div>
+          </div>
+          <!-- Foto 9 -->
+          <div class="carousel-slide">
+            <div class="slide-card">
+              <img src="alma9.jpg" onerror="this.onerror=null;this.src='alma.jpg';" alt="Alma actual">
+              <span class="slide-badge">Mi 1er Añito</span>
+              <div class="slide-caption">¡Lista para soplar mi primera velita! 🎂</div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- 9 Indicadores (Dots) -->
       <div class="carousel-dots">
         <div class="carousel-dot active" onclick="goToSlide(0)"></div>
         <div class="carousel-dot" onclick="goToSlide(1)"></div>
         <div class="carousel-dot" onclick="goToSlide(2)"></div>
+        <div class="carousel-dot" onclick="goToSlide(3)"></div>
+        <div class="carousel-dot" onclick="goToSlide(4)"></div>
+        <div class="carousel-dot" onclick="goToSlide(5)"></div>
+        <div class="carousel-dot" onclick="goToSlide(6)"></div>
+        <div class="carousel-dot" onclick="goToSlide(7)"></div>
+        <div class="carousel-dot" onclick="goToSlide(8)"></div>
       </div>
     </div>
 
@@ -670,7 +748,7 @@
     }
   }
 
-  // CONTADOR REGRESIVO (16 de Octubre)
+  // CONTADOR REGRESIVO
   function updateCountdown() {
     const now = new Date();
     let targetYear = now.getFullYear();
@@ -694,9 +772,9 @@
   setInterval(updateCountdown, 1000);
   updateCountdown();
 
-  // CARRUSEL
+  // CARRUSEL (9 SLIDES + TOUCH)
   let currentSlide = 0;
-  const totalSlides = 3;
+  const totalSlides = 9;
   const track = document.getElementById('carouselTrack');
   const dots = document.querySelectorAll('.carousel-dot');
 
@@ -716,6 +794,27 @@
     currentSlide = index;
     updateCarousel();
   }
+
+  // Deslizar con el dedo en celular
+  let startX = 0;
+  let endX = 0;
+  const container = document.getElementById('carouselContainer');
+
+  container.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+
+  container.addEventListener('touchend', (e) => {
+    endX = e.changedTouches[0].clientX;
+    const diff = startX - endX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) {
+        moveSlide(1);
+      } else {
+        moveSlide(-1);
+      }
+    }
+  }, { passive: true });
 </script>
 
 </body>
