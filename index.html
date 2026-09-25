@@ -540,8 +540,11 @@
 <!-- BOTÓN FLOTANTE PARA PAUSAR / REANUDAR -->
 <div id="music-btn" onclick="toggleAudio()">🎵</div>
 
-<!-- AUDIO COMPATIBLE CON IPHONE Y ANDROID -->
-<audio id="local-audio" src="Cancion.mp3" preload="auto" playsinline webkit-playsinline></audio>
+<!-- AUDIO LOCAL CON RUTAS ROBUSTAS -->
+<audio id="local-audio" preload="auto" playsinline webkit-playsinline loop>
+  <source src="Cancion.mp3" type="audio/mpeg">
+  <source src="cancion.mp3" type="audio/mpeg">
+</audio>
 
 <div class="mobile-frame">
   <div class="pattern-bg"></div>
@@ -729,43 +732,48 @@
 </div>
 
 <script>
-  // AUDIO
+// AUDIO COMPATIBLE CON IPHONE Y ANDROID
   const audio = document.getElementById('local-audio');
   const musicBtn = document.getElementById('music-btn');
+  const splash = document.getElementById('splash-screen');
 
-  // Repetir en bucle para Safari iPhone
-  audio.addEventListener('ended', function() {
-    this.currentTime = 0;
-    this.play();
-  }, false);
-
-  function iniciarAudio() {
-    document.getElementById('splash-screen').classList.add('hidden');
+  function reproducirSonido() {
+    splash.classList.add('hidden');
     
-    audio.load();
+    // Reproducción directa en la interacción sin audio.load()
     const playPromise = audio.play();
-
     if (playPromise !== undefined) {
       playPromise.then(() => {
         musicBtn.innerText = "🔊";
-      }).catch(err => {
-        console.log("Audio pausado por el sistema:", err);
-        musicBtn.innerText = "🎵";
+      }).catch((err) => {
+        console.log("Reproducción bloqueada o interrumpida:", err);
+        musicBtn.innerText = "🔇";
       });
     }
   }
+
+  // Vinculación tanto a touch como a click para respuesta inmediata
+  splash.addEventListener('touchend', function(e) {
+    e.preventDefault();
+    reproducirSonido();
+  }, { passive: false });
+
+  splash.addEventListener('click', function() {
+    reproducirSonido();
+  });
 
   function toggleAudio() {
     if (audio.paused) {
       audio.play().then(() => {
         musicBtn.innerText = "🔊";
+      }).catch(() => {
+        musicBtn.innerText = "🔇";
       });
     } else {
       audio.pause();
       musicBtn.innerText = "🔇";
     }
   }
-
   // CONTADOR REGRESIVO
   function updateCountdown() {
     const now = new Date();
