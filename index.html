@@ -540,12 +540,8 @@
 <!-- BOTÓN FLOTANTE PARA PAUSAR / REANUDAR -->
 <div id="music-btn" onclick="toggleAudio()">🎵</div>
 
-<!-- ELEMENTO DE AUDIO LOCAL -->
-<audio id="local-audio" loop preload="auto">
-  <source src="Cancion.mp3" type="audio/mpeg">
-  <source src="cancion.mp3" type="audio/mpeg">
-  <source src="en-mi-corazon-viviras.mp3" type="audio/mpeg">
-</audio>
+<!-- AUDIO COMPATIBLE CON IPHONE Y ANDROID -->
+<audio id="local-audio" src="Cancion.mp3" preload="auto" playsinline webkit-playsinline></audio>
 
 <div class="mobile-frame">
   <div class="pattern-bg"></div>
@@ -737,13 +733,26 @@
   const audio = document.getElementById('local-audio');
   const musicBtn = document.getElementById('music-btn');
 
+  // Repetir en bucle para Safari iPhone
+  audio.addEventListener('ended', function() {
+    this.currentTime = 0;
+    this.play();
+  }, false);
+
   function iniciarAudio() {
     document.getElementById('splash-screen').classList.add('hidden');
-    audio.play().then(() => {
-      musicBtn.innerText = "🔊";
-    }).catch(err => {
-      musicBtn.innerText = "🔇";
-    });
+    
+    audio.load();
+    const playPromise = audio.play();
+
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        musicBtn.innerText = "🔊";
+      }).catch(err => {
+        console.log("Audio pausado por el sistema:", err);
+        musicBtn.innerText = "🎵";
+      });
+    }
   }
 
   function toggleAudio() {
