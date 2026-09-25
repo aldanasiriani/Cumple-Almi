@@ -45,9 +45,10 @@
     align-items: center;
     color: #fff;
     cursor: pointer;
-    transition: opacity 0.4s ease, visibility 0.4s ease;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
     padding: 20px;
     text-align: center;
+    -webkit-tap-highlight-color: transparent;
   }
   #splash-screen.hidden {
     opacity: 0;
@@ -99,6 +100,7 @@
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     border: 2px solid #fff;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .mobile-frame {
@@ -529,7 +531,7 @@
 </head>
 <body>
 
-<!-- PANTALLA DE APERTURA QUE DESBLOQUEA EL AUDIO -->
+<!-- PANTALLA DE APERTURA QUE REPRODUCE Y DESBLOQUEA EL AUDIO -->
 <div id="splash-screen">
   <div class="envelope-icon">💌</div>
   <h1 class="splash-title">¡Tienes una invitación!</h1>
@@ -537,14 +539,11 @@
   <div class="splash-btn">TOCÁ PARA ABRIR 🎀</div>
 </div>
 
-<!-- BOTÓN FLOTANTE PARA PAUSAR / REANUDAR -->
-<div id="music-btn" onclick="toggleAudio()">🎵</div>
+<!-- BOTÓN FLOTANTE (SOLO POR SI EL USUARIO QUIERE PAUSARLA) -->
+<div id="music-btn" onclick="toggleAudio()">🔊</div>
 
-<!-- AUDIO CON RUTA EN MINÚSCULA Y SOPORTE SAFARI/CHROME -->
-<audio id="local-audio" preload="auto" playsinline webkit-playsinline loop>
-  <source src="cancion.mp3" type="audio/mpeg">
-  <source src="Cancion.mp3" type="audio/mpeg">
-</audio>
+<!-- AUDIO CON RUTA EXACTA cancion.mp3 -->
+<audio id="local-audio" src="cancion.mp3" preload="auto" playsinline webkit-playsinline loop></audio>
 
 <div class="mobile-frame">
   <div class="pattern-bg"></div>
@@ -732,37 +731,32 @@
 </div>
 
 <script>
-  // CONTROL DE AUDIO PARA SAFARI (IOS) Y CHROME (ANDROID)
+  // SISTEMA DE AUDIO INSTANTÁNEO MULTIPLATAFORMA (IOS & ANDROID)
   const audio = document.getElementById('local-audio');
   const musicBtn = document.getElementById('music-btn');
   const splash = document.getElementById('splash-screen');
-  let audioIniciado = false;
+  let audioYaComenzo = false;
 
-  function iniciarAudioDirecto() {
-    if (audioIniciado) return;
-    audioIniciado = true;
+  function abrirYReproducir(e) {
+    if (audioYaComenzo) return;
+    audioYaComenzo = true;
+
+    // Disparo inmediato en el mismo ciclo del toque (obligatorio para Safari iOS)
+    audio.play().then(() => {
+      musicBtn.innerText = "🔊";
+    }).catch(err => {
+      console.log("Aviso de reproducción:", err);
+      musicBtn.innerText = "🎵";
+    });
+
+    // Ocultar pantalla de bienvenida
     splash.classList.add('hidden');
-
-    const playPromise = audio.play();
-    if (playPromise !== undefined) {
-      playPromise.then(() => {
-        musicBtn.innerText = "🔊";
-      }).catch(err => {
-        console.log("Audio pausado por el sistema:", err);
-        musicBtn.innerText = "🎵";
-        audioIniciado = false;
-      });
-    }
   }
 
-  // Evento táctil prioritario para Safari en iPhone
-  splash.addEventListener('touchstart', function() {
-    iniciarAudioDirecto();
-  }, { once: true, passive: true });
-
-  splash.addEventListener('click', function() {
-    iniciarAudioDirecto();
-  });
+  // Escuchamos el evento de contacto inmediato
+  splash.addEventListener('pointerdown', abrirYReproducir, { once: true });
+  splash.addEventListener('touchend', abrirYReproducir, { once: true });
+  splash.addEventListener('click', abrirYReproducir, { once: true });
 
   function toggleAudio() {
     if (audio.paused) {
@@ -801,7 +795,7 @@
   setInterval(updateCountdown, 1000);
   updateCountdown();
 
-  // CARRUSEL (9 FOTOS + CONTROL TÁCTIL)
+  // CARRUSEL
   let currentSlide = 0;
   const totalSlides = 9;
   const track = document.getElementById('carouselTrack');
