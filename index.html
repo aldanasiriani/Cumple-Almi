@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,526 +12,612 @@
 <meta property="og:description" content="Acompáñanos a celebrar este día tan especial. Tocá acá para ver la invitación y confirmar tu asistencia ✨">
 <meta property="og:image" content="https://aldanasiriani.github.io/Cumple-Almi/alma.jpg">
 <meta property="og:url" content="https://aldanasiriani.github.io/Cumple-Almi/">
-  
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
 <style>
-  :root {
-    --red: #e51a2e;
-    --dark-red: #b30013;
-    --soft-red: #fff1f2;
-    --black: #1a1a1a;
+:root {
+  --red: #e51a2e;
+  --dark-red: #b30013;
+  --soft-red: #fff1f2;
+  --black: #1a1a1a;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f7e8ea;
+  font-family: 'Montserrat', sans-serif;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+/* PANTALLA DE APERTURA */
+#splash-screen {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, #ff2a40 0%, #b30013 100%);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  cursor: pointer;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  padding: 20px;
+  text-align: center;
+}
+
+#splash-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.envelope-icon {
+  font-size: 65px;
+  animation: bounce 1.8s infinite;
+}
+
+.splash-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 44px;
+  margin: 15px 0 6px;
+}
+
+.splash-sub {
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.splash-btn {
+  margin-top: 25px;
+  background: #fff;
+  color: var(--dark-red);
+  padding: 14px 30px;
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 1px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+/* BOTÓN MÚSICA FLOTANTE */
+#music-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+  width: 50px;
+  height: 50px;
+  background: var(--red);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  border: 2px solid #fff;
+  cursor: pointer;
+}
+
+.mobile-frame {
+  width: 100%;
+  max-width: 480px;
+  background: #fff;
+  min-height: 100vh;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.pattern-bg {
+  position: absolute;
+  inset: 0;
+  background-color: #fff9fa;
+  background-image: radial-gradient(var(--red) 11%, transparent 12%);
+  background-size: 28px 28px;
+  opacity: 0.12;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.content-body {
+  position: relative;
+  z-index: 2;
+  padding: 30px 20px 45px;
+  text-align: center;
+}
+
+/* MOÑO VECTORIAL GENERAL */
+.vector-bow {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 46px;
+  height: 30px;
+  z-index: 4;
+}
+
+.bow-wing {
+  position: absolute;
+  width: 24px;
+  height: 26px;
+  background: radial-gradient(#fff 20%, transparent 25%) 0 0/8px 8px, var(--red);
+  border-radius: 50% 20% 50% 20%;
+  border: 1.5px solid #fff;
+}
+
+.bow-wing.left {
+  left: 0;
+  transform: rotate(-25deg);
+}
+
+.bow-wing.right {
+  right: 0;
+  transform: rotate(25deg) scaleX(-1);
+}
+
+.bow-center {
+  position: absolute;
+  width: 14px;
+  height: 16px;
+  background: var(--red);
+  border-radius: 50%;
+  border: 1.5px solid #fff;
+  left: 50%;
+  top: 5px;
+  transform: translateX(-50%);
+  z-index: 5;
+}
+
+/* OREJITAS SUPERIORES */
+.minnie-badge {
+  position: relative;
+  width: 100px;
+  height: 90px;
+  margin: 5px auto 12px;
+}
+
+.m-head {
+  width: 64px;
+  height: 64px;
+  background: var(--black);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0;
+  left: 18px;
+}
+
+.m-ear {
+  width: 40px;
+  height: 40px;
+  background: var(--black);
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+}
+
+.m-ear.left {
+  left: 0;
+}
+
+.m-ear.right {
+  right: 0;
+}
+
+.intro-text {
+  font-family: 'Dancing Script', cursive;
+  font-size: 34px;
+  color: var(--red);
+  margin-bottom: 2px;
+}
+
+.subtitle {
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #666;
+  margin-bottom: 6px;
+}
+
+.girl-name {
+  font-family: 'Dancing Script', cursive;
+  font-size: 66px;
+  color: var(--black);
+  line-height: 1;
+  margin-bottom: 6px;
+  text-shadow: 2px 2px 0px rgba(229, 26, 46, 0.2);
+}
+
+.age-badge {
+  display: inline-block;
+  background: var(--red);
+  color: #fff;
+  padding: 6px 22px;
+  border-radius: 30px;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+  box-shadow: 0 4px 12px rgba(229,26,46,0.3);
+}
+
+/* FECHA */
+.date-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 16px;
+  margin-bottom: 25px;
+  border: 2px dashed var(--red);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.date-item span {
+  display: block;
+}
+
+.date-item .number {
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--red);
+  line-height: 1;
+}
+
+.date-item .label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #444;
+}
+
+/* MARCO FOTO PRINCIPAL */
+.photo-frame-wrapper {
+  position: relative;
+  width: 250px;
+  margin: 35px auto 25px;
+}
+
+.m-frame-ear {
+  width: 90px;
+  height: 90px;
+  background: var(--black);
+  border-radius: 50%;
+  position: absolute;
+  top: -20px;
+  z-index: 1;
+}
+
+.m-frame-ear.left {
+  left: -5px;
+}
+
+.m-frame-ear.right {
+  right: -5px;
+}
+
+.photo-frame-wrapper .vector-bow {
+  top: -18px;
+  width: 72px;
+  height: 46px;
+  z-index: 4;
+}
+
+.photo-frame-wrapper .bow-wing {
+  width: 38px;
+  height: 40px;
+  background: radial-gradient(#fff 20%, transparent 25%) 0 0/11px 11px, var(--red);
+  border: 2px solid #fff;
+}
+
+.photo-frame-wrapper .bow-center {
+  width: 20px;
+  height: 24px;
+  border: 2px solid #fff;
+  top: 8px;
+}
+
+.m-frame-head {
+  width: 215px;
+  height: 215px;
+  background: #fff;
+  border-radius: 50%;
+  position: relative;
+  border: 7px solid var(--black);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+  overflow: hidden;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+.alma-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
+
+/* CONTADOR */
+.counter-box {
+  background: var(--soft-red);
+  border-radius: 18px;
+  padding: 18px 12px;
+  margin: 22px 0;
+  border: 1px solid #ffd6d9;
+}
+
+.counter-box h3 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 28px;
+  color: var(--dark-red);
+  margin-bottom: 12px;
+}
+
+.timer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.timer-slot {
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.timer-slot .val {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--red);
+}
+
+.timer-slot .txt {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #777;
+  margin-top: 2px;
+}
+
+/* CARRUSEL */
+.carousel-section {
+  margin: 30px 0;
+  background: #fff;
+  border-radius: 22px;
+  padding: 20px 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  border: 1px solid #f0f0f0;
+}
+
+.carousel-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 32px;
+  color: var(--dark-red);
+  margin-bottom: 12px;
+}
+
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  touch-action: pan-y;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  box-sizing: border-box;
+  padding: 6px;
+}
+
+.slide-card {
+  background: #fafafa;
+  border: 2px solid #eee;
+  border-radius: 14px;
+  padding: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+.slide-card img {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  max-height: 480px;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
+
+.slide-badge {
+  display: inline-block;
+  background: #ffe3e6;
+  color: var(--dark-red);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 12px;
+  margin-top: 8px;
+}
+
+.slide-caption {
+  font-size: 13px;
+  color: #555;
+  margin-top: 5px;
+  font-weight: 600;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(229, 26, 46, 0.85);
+  color: #fff;
+  border: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+.carousel-btn.prev {
+  left: 8px;
+}
+
+.carousel-btn.next {
+  right: 8px;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.carousel-dot.active {
+  background: var(--red);
+  width: 20px;
+  border-radius: 10px;
+}
+
+/* TARJETAS */
+.info-card {
+  background: #fff;
+  border-radius: 22px;
+  padding: 22px 18px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  border: 1px solid #f0f0f0;
+  text-align: center;
+}
+
+.info-card .card-icon {
+  font-size: 32px;
+  margin-bottom: 6px;
+  display: inline-block;
+}
+
+.info-card h4 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 32px;
+  color: var(--dark-red);
+  margin-bottom: 6px;
+}
+
+.place-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 4px;
+}
+
+.place-address {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 14px;
+}
+
+/* BOTONES */
+.btn-pill {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  margin-top: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-red {
+  background: var(--red);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(229, 26, 46, 0.35);
+}
+
+.btn-dark {
+  background: var(--black);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.footer-love {
+  font-family: 'Dancing Script', cursive;
+  font-size: 34px;
+  color: var(--red);
+  margin-top: 20px;
+}
+
+.footer-sub {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #888;
+  margin-top: 4px;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
   }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    background-color: #f7e8ea;
-    font-family: 'Montserrat', sans-serif;
-    color: #333;
-    display: flex;
-    justify-content: center;
-    overflow-x: hidden;
+  50% {
+    transform: translateY(-8px);
   }
-
-  /* PANTALLA DE APERTURA */
-  #splash-screen {
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(circle, #ff2a40 0%, #b30013 100%);
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    cursor: pointer;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-    padding: 20px;
-    text-align: center;
-  }
-  #splash-screen.hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-  }
-  .envelope-icon {
-    font-size: 65px;
-    animation: bounce 1.8s infinite;
-  }
-  .splash-title {
-    font-family: 'Dancing Script', cursive;
-    font-size: 44px;
-    margin: 15px 0 6px;
-  }
-  .splash-sub {
-    font-size: 12px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    font-weight: 700;
-  }
-  .splash-btn {
-    margin-top: 25px;
-    background: #fff;
-    color: var(--dark-red);
-    padding: 14px 30px;
-    border-radius: 50px;
-    font-weight: 800;
-    font-size: 14px;
-    letter-spacing: 1px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-  }
-
-  /* BOTÓN MÚSICA FLOTANTE */
-  #music-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 100;
-    width: 50px;
-    height: 50px;
-    background: var(--red);
-    color: #fff;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    border: 2px solid #fff;
-    cursor: pointer;
-  }
-
-  .mobile-frame {
-    width: 100%;
-    max-width: 480px;
-    background: #fff;
-    min-height: 100vh;
-    box-shadow: 0 10px 35px rgba(0,0,0,0.15);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .pattern-bg {
-    position: absolute;
-    inset: 0;
-    background-color: #fff9fa;
-    background-image: radial-gradient(var(--red) 11%, transparent 12%);
-    background-size: 28px 28px;
-    opacity: 0.12;
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  .content-body {
-    position: relative;
-    z-index: 2;
-    padding: 30px 20px 45px;
-    text-align: center;
-  }
-
-  /* MOÑO VECTORIAL GENERAL */
-  .vector-bow {
-    position: absolute;
-    top: 4px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 46px;
-    height: 30px;
-    z-index: 4;
-  }
-  .bow-wing {
-    position: absolute;
-    width: 24px;
-    height: 26px;
-    background: radial-gradient(#fff 20%, transparent 25%) 0 0/8px 8px, var(--red);
-    border-radius: 50% 20% 50% 20%;
-    border: 1.5px solid #fff;
-  }
-  .bow-wing.left { left: 0; transform: rotate(-25deg); }
-  .bow-wing.right { right: 0; transform: rotate(25deg) scaleX(-1); }
-  .bow-center {
-    position: absolute;
-    width: 14px;
-    height: 16px;
-    background: var(--red);
-    border-radius: 50%;
-    border: 1.5px solid #fff;
-    left: 50%;
-    top: 5px;
-    transform: translateX(-50%);
-    z-index: 5;
-  }
-
-  /* OREJITAS SUPERIORES */
-  .minnie-badge {
-    position: relative;
-    width: 100px;
-    height: 90px;
-    margin: 5px auto 12px;
-  }
-  .m-head {
-    width: 64px;
-    height: 64px;
-    background: var(--black);
-    border-radius: 50%;
-    position: absolute;
-    bottom: 0;
-    left: 18px;
-  }
-  .m-ear {
-    width: 40px;
-    height: 40px;
-    background: var(--black);
-    border-radius: 50%;
-    position: absolute;
-    top: 0;
-  }
-  .m-ear.left { left: 0; }
-  .m-ear.right { right: 0; }
-
-  .intro-text {
-    font-family: 'Dancing Script', cursive;
-    font-size: 34px;
-    color: var(--red);
-    margin-bottom: 2px;
-  }
-  .subtitle {
-    font-size: 11px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    font-weight: 700;
-    color: #666;
-    margin-bottom: 6px;
-  }
-  .girl-name {
-    font-family: 'Dancing Script', cursive;
-    font-size: 66px;
-    color: var(--black);
-    line-height: 1;
-    margin-bottom: 6px;
-    text-shadow: 2px 2px 0px rgba(229, 26, 46, 0.2);
-  }
-  .age-badge {
-    display: inline-block;
-    background: var(--red);
-    color: #fff;
-    padding: 6px 22px;
-    border-radius: 30px;
-    font-weight: 800;
-    font-size: 13px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 22px;
-    box-shadow: 0 4px 12px rgba(229,26,46,0.3);
-  }
-
-  .date-card {
-    background: #fff;
-    border-radius: 20px;
-    padding: 16px;
-    margin-bottom: 25px;
-    border: 2px dashed var(--red);
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-  .date-item span { display: block; }
-  .date-item .number {
-    font-size: 32px;
-    font-weight: 900;
-    color: var(--red);
-    line-height: 1;
-  }
-  .date-item .label {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #444;
-  }
-
-  /* MARCO FOTO PRINCIPAL */
-  .photo-frame-wrapper {
-    position: relative;
-    width: 250px;
-    margin: 35px auto 25px;
-  }
-  .m-frame-ear {
-    width: 90px;
-    height: 90px;
-    background: var(--black);
-    border-radius: 50%;
-    position: absolute;
-    top: -20px;
-    z-index: 1;
-  }
-  .m-frame-ear.left { left: -5px; }
-  .m-frame-ear.right { right: -5px; }
-  .photo-frame-wrapper .vector-bow {
-    top: -18px;
-    width: 72px;
-    height: 46px;
-    z-index: 4;
-  }
-  .photo-frame-wrapper .bow-wing {
-    width: 38px;
-    height: 40px;
-    background: radial-gradient(#fff 20%, transparent 25%) 0 0/11px 11px, var(--red);
-    border: 2px solid #fff;
-  }
-  .photo-frame-wrapper .bow-center {
-    width: 20px;
-    height: 24px;
-    border: 2px solid #fff;
-    top: 8px;
-  }
-  .m-frame-head {
-    width: 215px;
-    height: 215px;
-    background: #fff;
-    border-radius: 50%;
-    position: relative;
-    border: 7px solid var(--black);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-    overflow: hidden;
-    margin: 0 auto;
-    z-index: 2;
-  }
-  .alma-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 30%;
-    display: block;
-  }
-
-  /* CONTADOR */
-  .counter-box {
-    background: var(--soft-red);
-    border-radius: 18px;
-    padding: 18px 12px;
-    margin: 22px 0;
-    border: 1px solid #ffd6d9;
-  }
-  .counter-box h3 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 28px;
-    color: var(--dark-red);
-    margin-bottom: 12px;
-  }
-  .timer-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-  }
-  .timer-slot {
-    background: #fff;
-    border-radius: 12px;
-    padding: 10px 4px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  }
-  .timer-slot .val {
-    font-size: 22px;
-    font-weight: 800;
-    color: var(--red);
-  }
-  .timer-slot .txt {
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #777;
-    margin-top: 2px;
-  }
-
-  /* CARRUSEL DE 9 FOTOS */
-  .carousel-section {
-    margin: 30px 0;
-    background: #fff;
-    border-radius: 22px;
-    padding: 20px 14px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-    border: 1px solid #f0f0f0;
-  }
-  .carousel-title {
-    font-family: 'Dancing Script', cursive;
-    font-size: 32px;
-    color: var(--dark-red);
-    margin-bottom: 12px;
-  }
-  .carousel-container {
-    position: relative;
-    overflow: hidden;
-    border-radius: 16px;
-    touch-action: pan-y;
-  }
-  .carousel-track {
-    display: flex;
-    transition: transform 0.4s ease-in-out;
-  }
-  .carousel-slide {
-    min-width: 100%;
-    box-sizing: border-box;
-    padding: 6px;
-  }
-  .slide-card {
-    background: #fafafa;
-    border: 2px solid #eee;
-    border-radius: 14px;
-    padding: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
-  }
- .slide-card img {
-    width: 100%;
-    aspect-ratio: 9 / 16;
-    max-height: 480px;
-    object-fit: cover;
-    border-radius: 12px;
-    display: block;
-  }
-  .slide-badge {
-    display: inline-block;
-    background: #ffe3e6;
-    color: var(--dark-red);
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 12px;
-    margin-top: 8px;
-  }
-  .slide-caption {
-    font-size: 13px;
-    color: #555;
-    margin-top: 5px;
-    font-weight: 600;
-  }
-  .carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(229, 26, 46, 0.85);
-    color: #fff;
-    border: none;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    font-size: 18px;
-    cursor: pointer;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-  }
-  .carousel-btn.prev { left: 8px; }
-  .carousel-btn.next { right: 8px; }
-  .carousel-dots {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 14px;
-  }
-  .carousel-dot {
-    width: 8px;
-    height: 8px;
-    background: #e0e0e0;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  .carousel-dot.active {
-    background: var(--red);
-    width: 20px;
-    border-radius: 10px;
-  }
-
-  /* TARJETA UBICACIÓN */
-  .info-card {
-    background: #fff;
-    border-radius: 22px;
-    padding: 22px 18px;
-    margin-bottom: 20px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-    border: 1px solid #f0f0f0;
-    text-align: center;
-  }
-  .info-card .card-icon {
-    font-size: 32px;
-    margin-bottom: 6px;
-    display: inline-block;
-  }
-  .info-card h4 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 32px;
-    color: var(--dark-red);
-    margin-bottom: 6px;
-  }
-  .place-name {
-    font-size: 17px;
-    font-weight: 700;
-    color: var(--black);
-    margin-bottom: 4px;
-  }
-  .place-address {
-    font-size: 13px;
-    color: #666;
-    margin-bottom: 14px;
-  }
-
-  /* BOTONES */
-  .btn-pill {
-    display: block;
-    width: 100%;
-    padding: 14px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 800;
-    font-size: 13px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: all 0.2s ease;
-    margin-top: 10px;
-    border: none;
-    cursor: pointer;
-  }
-  .btn-red {
-    background: var(--red);
-    color: #fff;
-    box-shadow: 0 4px 15px rgba(229, 26, 46, 0.35);
-  }
-  .btn-dark {
-    background: var(--black);
-    color: #fff;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  }
-
-  .footer-love {
-    font-family: 'Dancing Script', cursive;
-    font-size: 34px;
-    color: var(--red);
-    margin-top: 20px;
-  }
-  .footer-sub {
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #888;
-    margin-top: 4px;
-  }
-
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
+}
 </style>
 </head>
+
 <body>
 
-<!-- PANTALLA DE APERTURA QUE DESBLOQUEA EL AUDIO -->
-<div id="splash-screen" onclick="iniciarAudio()">
+<!-- PANTALLA DE APERTURA -->
+<div id="splash-screen">
   <div class="envelope-icon">💌</div>
   <h1 class="splash-title">¡Tienes una invitación!</h1>
   <p class="splash-sub">1er Añito de Alma</p>
@@ -538,23 +625,24 @@
 </div>
 
 <!-- BOTÓN FLOTANTE PARA PAUSAR / REANUDAR -->
-<div id="music-btn" onclick="toggleAudio()">🎵</div>
+<div id="music-btn">🎵</div>
 
-<!-- AUDIO LOCAL CON RUTAS ROBUSTAS -->
-<audio id="local-audio" preload="auto" playsinline webkit-playsinline loop>
-  <source src="Cancion.mp3" type="audio/mpeg">
-  <source src="cancion.mp3" type="audio/mpeg">
+<!-- AUDIO -->
+<audio id="local-audio" preload="auto" loop playsinline webkit-playsinline>
+  <source src="./cancion.mp3" type="audio/mpeg">
 </audio>
 
 <div class="mobile-frame">
   <div class="pattern-bg"></div>
 
   <div class="content-body">
+
     <!-- OREJITAS MINNIE CABECERA -->
     <div class="minnie-badge">
       <div class="m-ear left"></div>
       <div class="m-ear right"></div>
       <div class="m-head"></div>
+
       <div class="vector-bow">
         <div class="bow-wing left"></div>
         <div class="bow-wing right"></div>
@@ -569,51 +657,82 @@
 
     <!-- FECHA Y HORA -->
     <div class="date-card">
+
       <div class="date-item">
         <span class="label">OCTUBRE</span>
         <span class="number">16</span>
       </div>
+
       <div style="font-size: 26px; color: var(--red);">♥</div>
+
       <div class="date-item">
         <span class="label">HORARIO</span>
         <span class="number">13:30</span>
         <span class="label">HS</span>
       </div>
+
     </div>
 
     <!-- FOTO PRINCIPAL -->
     <div class="photo-frame-wrapper">
+
       <div class="m-frame-ear left"></div>
       <div class="m-frame-ear right"></div>
+
       <div class="vector-bow">
         <div class="bow-wing left"></div>
         <div class="bow-wing right"></div>
         <div class="bow-center"></div>
       </div>
+
       <div class="m-frame-head">
         <img src="alma.jpg" alt="Alma" class="alma-photo">
       </div>
+
     </div>
 
     <!-- CONTADOR REGRESIVO -->
     <div class="counter-box">
+
       <h3>Faltan muy poquitos días...</h3>
+
       <div class="timer-grid">
-        <div class="timer-slot"><div class="val" id="days">00</div><div class="txt">Días</div></div>
-        <div class="timer-slot"><div class="val" id="hours">00</div><div class="txt">Hs</div></div>
-        <div class="timer-slot"><div class="val" id="min">00</div><div class="txt">Min</div></div>
-        <div class="timer-slot"><div class="val" id="sec">00</div><div class="txt">Seg</div></div>
+
+        <div class="timer-slot">
+          <div class="val" id="days">00</div>
+          <div class="txt">Días</div>
+        </div>
+
+        <div class="timer-slot">
+          <div class="val" id="hours">00</div>
+          <div class="txt">Hs</div>
+        </div>
+
+        <div class="timer-slot">
+          <div class="val" id="min">00</div>
+          <div class="txt">Min</div>
+        </div>
+
+        <div class="timer-slot">
+          <div class="val" id="sec">00</div>
+          <div class="txt">Seg</div>
+        </div>
+
       </div>
     </div>
 
-<!-- CARRUSEL DE 9 FOTOS -->
+    <!-- CARRUSEL DE 9 FOTOS -->
     <div class="carousel-section">
+
       <div class="carousel-title">Mis Momentos Mágicos 🎀</div>
+
       <div class="carousel-container" id="carouselContainer">
+
         <button class="carousel-btn prev" onclick="moveSlide(-1)">❮</button>
         <button class="carousel-btn next" onclick="moveSlide(1)">❯</button>
-        
+
         <div class="carousel-track" id="carouselTrack">
+
           <!-- Foto 1 -->
           <div class="carousel-slide">
             <div class="slide-card">
@@ -622,14 +741,16 @@
               <div class="slide-caption">¡Lista para soplar mi primera velita! 🎂</div>
             </div>
           </div>
+
           <!-- Foto 2 -->
           <div class="carousel-slide">
             <div class="slide-card">
               <img src="alma2.jpg" onerror="this.onerror=null;this.src='alma.jpg';" alt="Alma">
               <span class="slide-badge">Casi un añito</span>
-              <div class="slide-caption">Cada día más curiosa  🎀</div>
+              <div class="slide-caption">Cada día más curiosa 🎀</div>
             </div>
           </div>
+
           <!-- Foto 3 -->
           <div class="carousel-slide">
             <div class="slide-card">
@@ -638,6 +759,7 @@
               <div class="slide-caption">Mis juguetes favoritos y travesuras 🧸</div>
             </div>
           </div>
+
           <!-- Foto 4 -->
           <div class="carousel-slide">
             <div class="slide-card">
@@ -646,6 +768,7 @@
               <div class="slide-caption">Sonrisas que Iluminan 🧸</div>
             </div>
           </div>
+
           <!-- Foto 5 -->
           <div class="carousel-slide">
             <div class="slide-card">
@@ -654,6 +777,7 @@
               <div class="slide-caption">Media vuelta al sol de mucho amor ☀️</div>
             </div>
           </div>
+
           <!-- Foto 6 -->
           <div class="carousel-slide">
             <div class="slide-card">
@@ -662,6 +786,7 @@
               <div class="slide-caption">Los piecitos del Amor 👶</div>
             </div>
           </div>
+
           <!-- Foto 7 -->
           <div class="carousel-slide">
             <div class="slide-card">
@@ -670,6 +795,7 @@
               <div class="slide-caption">Pura dulzura 🥰</div>
             </div>
           </div>
+
           <!-- Foto 8 -->
           <div class="carousel-slide">
             <div class="slide-card">
@@ -678,6 +804,7 @@
               <div class="slide-caption">Mis primeras miradas de ternura 💕</div>
             </div>
           </div>
+
           <!-- Foto 9 -->
           <div class="carousel-slide">
             <div class="slide-card">
@@ -686,11 +813,13 @@
               <div class="slide-caption">Llegué para iluminar el mundo ✨</div>
             </div>
           </div>
+
         </div>
       </div>
 
-      <!-- 9 Indicadores (Dots) -->
+      <!-- 9 Indicadores -->
       <div class="carousel-dots">
+
         <div class="carousel-dot active" onclick="goToSlide(0)"></div>
         <div class="carousel-dot" onclick="goToSlide(1)"></div>
         <div class="carousel-dot" onclick="goToSlide(2)"></div>
@@ -700,148 +829,358 @@
         <div class="carousel-dot" onclick="goToSlide(6)"></div>
         <div class="carousel-dot" onclick="goToSlide(7)"></div>
         <div class="carousel-dot" onclick="goToSlide(8)"></div>
+
       </div>
     </div>
 
     <!-- DÓNDE FESTEJO -->
     <div class="info-card">
+
       <div class="card-icon">🎀📍</div>
+
       <h4>¿Dónde festejo?</h4>
+
       <div class="place-name">Quincho El Reencuentro</div>
-      <div class="place-address">Belgrano 911, Villa Nueva, Lules</div>
-      <a class="btn-pill btn-red" href="https://www.google.com/maps/search/?api=1&query=Belgrano+911+Villa+Nueva+Lules+Tucuman" target="_blank">
+
+      <div class="place-address">
+        Belgrano 911, Villa Nueva, Lules
+      </div>
+
+      <a
+        class="btn-pill btn-red"
+        href="https://www.google.com/maps/search/?api=1&query=Belgrano+911+Villa+Nueva+Lules+Tucuman"
+        target="_blank">
         📍 CÓMO LLEGAR (MAPS)
       </a>
+
     </div>
 
     <!-- CONFIRMAR ASISTENCIA -->
     <div class="info-card">
+
       <div class="card-icon">💌</div>
+
       <h4>Confirmar Asistencia</h4>
+
       <p style="font-size: 13px; color: #555; margin-bottom: 12px;">
         Por favor, confirmanos tu presencia para preparar todo con mucho amor.
       </p>
-      <a class="btn-pill btn-dark" href="https://wa.me/?text=Hola%20%F0%9F%8E%80%20Confirmo%20mi%20asistencia%20al%20cumple%20de%20Alma%20%F0%9F%8E%82%E2%9D%A4%EF%B8%8F" target="_blank">
+
+      <a
+        class="btn-pill btn-dark"
+        href="https://wa.me/?text=Hola%20%F0%9F%8E%80%20Confirmo%20mi%20asistencia%20al%20cumple%20de%20Alma%20%F0%9F%8E%82%E2%9D%A4%EF%B8%8F"
+        target="_blank">
         CONFIRMAR POR WHATSAPP
       </a>
+
     </div>
 
-    <div class="footer-love">¡Te esperamos para celebrar juntos! ❤️</div>
-    <div class="footer-sub">Alma Siriani Castillo · Su primer añito</div>
+    <div class="footer-love">
+      ¡Te esperamos para celebrar juntos! ❤️
+    </div>
+
+    <div class="footer-sub">
+      Alma Siriani Castillo · Su primer añito
+    </div>
+
   </div>
 </div>
 
 <script>
-// AUDIO COMPATIBLE CON IPHONE Y ANDROID
-  const audio = document.getElementById('local-audio');
-  const musicBtn = document.getElementById('music-btn');
-  const splash = document.getElementById('splash-screen');
 
-  function reproducirSonido() {
-    splash.classList.add('hidden');
-    
-    // Reproducción directa en la interacción sin audio.load()
-    const playPromise = audio.play();
-    if (playPromise !== undefined) {
-      playPromise.then(() => {
-        musicBtn.innerText = "🔊";
-      }).catch((err) => {
-        console.log("Reproducción bloqueada o interrumpida:", err);
-        musicBtn.innerText = "🔇";
-      });
-    }
+/* =========================================================
+   AUDIO — COMPATIBLE CON IPHONE Y ANDROID
+   ========================================================= */
+
+const audio = document.getElementById('local-audio');
+const musicBtn = document.getElementById('music-btn');
+const splash = document.getElementById('splash-screen');
+
+let audioIniciado = false;
+
+/*
+ * Esta función se ejecuta directamente cuando el usuario
+ * toca la pantalla de apertura.
+ *
+ * Esto es importante para Safari/iPhone porque iOS permite
+ * reproducir audio cuando play() está asociado directamente
+ * a una interacción del usuario.
+ */
+function iniciarAudio(e) {
+
+  if (e) {
+    e.preventDefault();
+    e.stopPropagation();
   }
 
-  // Vinculación tanto a touch como a click para respuesta inmediata
-  splash.addEventListener('touchend', function(e) {
-    e.preventDefault();
-    reproducirSonido();
-  }, { passive: false });
+  // Evita que el audio se inicie dos veces
+  if (audioIniciado) return;
 
-  splash.addEventListener('click', function() {
-    reproducirSonido();
+  audioIniciado = true;
+
+  audio.currentTime = 0;
+
+  const promesa = audio.play();
+
+  if (promesa !== undefined) {
+
+    promesa
+      .then(() => {
+
+        musicBtn.innerText = "🔊";
+
+        // Ocultamos la pantalla solamente después
+        // de que el audio haya comenzado correctamente.
+        splash.classList.add('hidden');
+
+      })
+      .catch((error) => {
+
+        console.log("Error al reproducir el audio:", error);
+
+        audioIniciado = false;
+
+        musicBtn.innerText = "🔇";
+
+      });
+  }
+}
+
+
+/*
+ * Botón flotante de música
+ */
+function toggleAudio(e) {
+
+  if (e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
+  if (audio.paused) {
+
+    audio.play()
+      .then(() => {
+        musicBtn.innerText = "🔊";
+      })
+      .catch((error) => {
+        console.log("No se pudo reproducir:", error);
+        musicBtn.innerText = "🔇";
+      });
+
+  } else {
+
+    audio.pause();
+    musicBtn.innerText = "🔇";
+
+  }
+}
+
+
+/*
+ * IMPORTANTE:
+ * No usamos onclick en #splash-screen.
+ *
+ * Usamos touchend para iPhone/iPad y click como respaldo
+ * para Android/PC.
+ *
+ * La función tiene protección para evitar doble ejecución.
+ */
+splash.addEventListener(
+  'touchend',
+  iniciarAudio,
+  { passive: false }
+);
+
+splash.addEventListener(
+  'click',
+  iniciarAudio
+);
+
+
+/*
+ * Botón de música
+ */
+musicBtn.addEventListener(
+  'click',
+  toggleAudio
+);
+
+
+/* =========================================================
+   CONTADOR REGRESIVO
+   ========================================================= */
+
+function updateCountdown() {
+
+  const now = new Date();
+
+  let targetYear = now.getFullYear();
+
+  let targetDate = new Date(
+    targetYear,
+    9,
+    16,
+    13,
+    30,
+    0
+  );
+
+  if (now > targetDate) {
+
+    targetDate = new Date(
+      targetYear + 1,
+      9,
+      16,
+      13,
+      30,
+      0
+    );
+
+  }
+
+  const diff = targetDate - now;
+
+  const d = Math.floor(
+    diff / (1000 * 60 * 60 * 24)
+  );
+
+  const h = Math.floor(
+    (diff % (1000 * 60 * 60 * 24))
+    / (1000 * 60 * 60)
+  );
+
+  const m = Math.floor(
+    (diff % (1000 * 60 * 60))
+    / (1000 * 60)
+  );
+
+  const s = Math.floor(
+    (diff % (1000 * 60))
+    / 1000
+  );
+
+  document.getElementById("days").innerText =
+    d < 10 ? "0" + d : d;
+
+  document.getElementById("hours").innerText =
+    h < 10 ? "0" + h : h;
+
+  document.getElementById("min").innerText =
+    m < 10 ? "0" + m : m;
+
+  document.getElementById("sec").innerText =
+    s < 10 ? "0" + s : s;
+}
+
+setInterval(updateCountdown, 1000);
+
+updateCountdown();
+
+
+/* =========================================================
+   CARRUSEL
+   ========================================================= */
+
+let currentSlide = 0;
+
+const totalSlides = 9;
+
+const track =
+  document.getElementById('carouselTrack');
+
+const dots =
+  document.querySelectorAll('.carousel-dot');
+
+
+function updateCarousel() {
+
+  track.style.transform =
+    `translateX(-${currentSlide * 100}%)`;
+
+  dots.forEach((dot, index) => {
+
+    dot.classList.toggle(
+      'active',
+      index === currentSlide
+    );
+
   });
 
-  function toggleAudio() {
-    if (audio.paused) {
-      audio.play().then(() => {
-        musicBtn.innerText = "🔊";
-      }).catch(() => {
-        musicBtn.innerText = "🔇";
-      });
-    } else {
-      audio.pause();
-      musicBtn.innerText = "🔇";
-    }
-  }
-  // CONTADOR REGRESIVO
-  function updateCountdown() {
-    const now = new Date();
-    let targetYear = now.getFullYear();
-    let targetDate = new Date(targetYear, 9, 16, 13, 30, 0);
+}
 
-    if (now > targetDate) {
-      targetDate = new Date(targetYear + 1, 9, 16, 13, 30, 0);
-    }
 
-    const diff = targetDate - now;
-    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const s = Math.floor((diff % (1000 * 60)) / 1000);
+function moveSlide(direction) {
 
-    document.getElementById("days").innerText = d < 10 ? "0" + d : d;
-    document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
-    document.getElementById("min").innerText = m < 10 ? "0" + m : m;
-    document.getElementById("sec").innerText = s < 10 ? "0" + s : s;
-  }
-  setInterval(updateCountdown, 1000);
-  updateCountdown();
+  currentSlide =
+    (currentSlide + direction + totalSlides)
+    % totalSlides;
 
-  // CARRUSEL (9 SLIDES + TOUCH)
-  let currentSlide = 0;
-  const totalSlides = 9;
-  const track = document.getElementById('carouselTrack');
-  const dots = document.querySelectorAll('.carousel-dot');
+  updateCarousel();
 
-  function updateCarousel() {
-    track.style.transform = `translateX(-${currentSlide * 100}%)`;
-    dots.forEach((dot, index) => {
-      dot.classList.toggle('active', index === currentSlide);
-    });
-  }
+}
 
-  function moveSlide(direction) {
-    currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
-    updateCarousel();
-  }
 
-  function goToSlide(index) {
-    currentSlide = index;
-    updateCarousel();
-  }
+function goToSlide(index) {
 
-  // Deslizar con el dedo en celular
-  let startX = 0;
-  let endX = 0;
-  const container = document.getElementById('carouselContainer');
+  currentSlide = index;
 
-  container.addEventListener('touchstart', (e) => {
+  updateCarousel();
+
+}
+
+
+/* =========================================================
+   DESLIZAR CON EL DEDO EN CELULAR
+   ========================================================= */
+
+let startX = 0;
+let endX = 0;
+
+const container =
+  document.getElementById('carouselContainer');
+
+
+container.addEventListener(
+  'touchstart',
+  (e) => {
+
     startX = e.touches[0].clientX;
-  }, { passive: true });
 
-  container.addEventListener('touchend', (e) => {
+  },
+  { passive: true }
+);
+
+
+container.addEventListener(
+  'touchend',
+  (e) => {
+
     endX = e.changedTouches[0].clientX;
+
     const diff = startX - endX;
+
     if (Math.abs(diff) > 40) {
+
       if (diff > 0) {
+
         moveSlide(1);
+
       } else {
+
         moveSlide(-1);
+
       }
+
     }
-  }, { passive: true });
+
+  },
+  { passive: true }
+);
+
 </script>
 
 </body>
 </html>
+```
+
